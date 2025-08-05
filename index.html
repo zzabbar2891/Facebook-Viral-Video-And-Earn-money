@@ -1,0 +1,2521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facebook - Earn Money</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --facebook-blue: #1877f2;
+            --facebook-dark-blue: #166fe5;
+            --facebook-gray: #f0f2f5;
+            --facebook-dark-gray: #e4e6eb;
+            --facebook-text: #050505;
+            --facebook-secondary-text: #65676b;
+            --facebook-divider: #ced0d4;
+            --money-green: #27ae60;
+            --gold: #f39c12;
+            --bkash-pink: #e2136e;
+            --rocket-orange: #f88523;
+            --nagad-purple: #8e44ad;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Helvetica, Arial, sans-serif;
+        }
+        
+        body {
+            background-color: var(--facebook-gray);
+            color: var(--facebook-text);
+            padding-top: 56px;
+            padding-bottom: 56px;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        /* Top Navigation */
+        .top-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 56px;
+            background-color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 16px;
+            border-bottom: 1px solid var(--facebook-divider);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo {
+            color: var(--facebook-blue);
+            font-size: 28px;
+            font-weight: 700;
+            margin-right: 8px;
+        }
+        
+        .earn-money {
+            background: linear-gradient(45deg, #f39c12, #e74c3c, #9b59b6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 700;
+            font-size: 16px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .menu-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: var(--facebook-secondary-text);
+            background: var(--facebook-gray);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .menu-btn:hover {
+            background: var(--facebook-dark-gray);
+        }
+        
+        /* Side Menu */
+        .side-menu {
+            position: fixed;
+            top: 56px;
+            right: -300px;
+            width: 280px;
+            height: calc(100% - 56px);
+            background: white;
+            box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+            z-index: 999;
+            transition: right 0.3s ease;
+            padding: 20px 0;
+            overflow-y: auto;
+        }
+        
+        .side-menu.open {
+            right: 0;
+        }
+        
+        .menu-header {
+            display: flex;
+            align-items: center;
+            padding: 0 20px 15px;
+            border-bottom: 1px solid var(--facebook-divider);
+            margin-bottom: 15px;
+        }
+        
+        .balance-display {
+            background: var(--money-green);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-size: 20px;
+            font-weight: 700;
+            text-align: center;
+            margin: 0 20px 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .balance-amount {
+            font-size: 24px;
+        }
+        
+        .menu-item {
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            color: var(--facebook-text);
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+        }
+        
+        .menu-item:hover {
+            background: var(--facebook-gray);
+        }
+        
+        .menu-item i {
+            width: 30px;
+            font-size: 18px;
+            color: var(--facebook-blue);
+            margin-right: 10px;
+        }
+        
+        /* Withdrawal Form */
+        .withdraw-form {
+            padding: 0 20px;
+            margin-top: 15px;
+        }
+        
+        .withdraw-form h3 {
+            margin-bottom: 15px;
+            color: var(--facebook-text);
+            font-size: 18px;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        
+        .form-group select, .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--facebook-divider);
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        
+        .payment-methods {
+            display: flex;
+            gap: 10px;
+            margin: 10px 0;
+        }
+        
+        .payment-method {
+            flex: 1;
+            text-align: center;
+            padding: 10px;
+            border: 1px solid var(--facebook-divider);
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .payment-method.active {
+            border-color: var(--money-green);
+            background: rgba(39, 174, 96, 0.1);
+        }
+        
+        .payment-method.bkash { color: var(--bkash-pink); }
+        .payment-method.rocket { color: var(--rocket-orange); }
+        .payment-method.nagad { color: var(--nagad-purple); }
+        
+        .withdraw-btn {
+            background: var(--gold);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            display: block;
+            width: 100%;
+            margin-top: 15px;
+            transition: background 0.3s;
+        }
+        
+        .withdraw-btn:hover {
+            background: #e67e22;
+        }
+        
+        .withdraw-btn:disabled {
+            background: #95a5a6;
+            cursor: not-allowed;
+        }
+        
+        .min-amount {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 13px;
+            color: var(--facebook-secondary-text);
+        }
+        
+        /* Main Content */
+        .main-content {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 16px;
+            padding-bottom: 80px;
+        }
+        
+        /* Stories */
+        .stories-container {
+            background-color: white;
+            border-radius: 8px;
+            padding: 16px 8px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            display: flex;
+            overflow-x: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            margin-bottom: 16px;
+        }
+        
+        .stories-container::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .story {
+            position: relative;
+            width: 112px;
+            height: 200px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 0 4px;
+            flex-shrink: 0;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .story:first-child {
+            margin-left: 4px;
+        }
+        
+        .story:last-child {
+            margin-right: 4px;
+        }
+        
+        .story-bg {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .story:hover .story-bg {
+            transform: scale(1.05);
+        }
+        
+        .story-user {
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .story-profile {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 3px solid var(--facebook-blue);
+            object-fit: cover;
+            background: white;
+        }
+        
+        .story-username {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            color: white;
+            font-weight: 600;
+            font-size: 14px;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+        }
+        
+        .add-story {
+            position: absolute;
+            bottom: 35px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 36px;
+            height: 36px;
+            background: var(--facebook-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            border: 4px solid white;
+        }
+        
+        /* Create Post */
+        .create-post-container {
+            background-color: white;
+            border-radius: 8px;
+            padding: 12px 16px 16px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            margin-bottom: 16px;
+        }
+        
+        .create-post-top {
+            display: flex;
+            align-items: center;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--facebook-divider);
+        }
+        
+        .profile-pic {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 8px;
+        }
+        
+        .post-input {
+            flex: 1;
+            background: var(--facebook-gray);
+            border: none;
+            border-radius: 20px;
+            padding: 10px 16px;
+            font-size: 17px;
+            color: var(--facebook-secondary-text);
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        
+        .post-input:hover {
+            background: var(--facebook-dark-gray);
+        }
+        
+        .create-post-bottom {
+            display: flex;
+            justify-content: space-between;
+            padding-top: 8px;
+        }
+        
+        .create-option {
+            display: flex;
+            align-items: center;
+            padding: 8px;
+            border-radius: 8px;
+            color: var(--facebook-secondary-text);
+            font-size: 15px;
+            font-weight: 500;
+            transition: background 0.2s;
+            cursor: pointer;
+        }
+        
+        .create-option:hover {
+            background: var(--facebook-gray);
+        }
+        
+        .create-option i {
+            margin-right: 8px;
+            font-size: 20px;
+        }
+        
+        .live-video i { color: #f3425f; }
+        .photo-video i { color: #45bd62; }
+        .feeling-activity i { color: #f7b928; }
+        
+        /* Post Container */
+        .post-container {
+            background-color: white;
+            border-radius: 8px;
+            padding: 12px 16px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            margin-bottom: 16px;
+            position: relative;
+        }
+        
+        .money-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--money-green);
+            color: white;
+            padding: 3px 8px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+        }
+        
+        .money-badge i {
+            margin-right: 3px;
+        }
+        
+        .post-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        
+        .post-user-info {
+            flex: 1;
+            margin-left: 8px;
+        }
+        
+        .post-username {
+            font-weight: 600;
+            font-size: 15px;
+            margin-bottom: 2px;
+            color: var(--facebook-text);
+        }
+        
+        .post-time {
+            font-size: 13px;
+            color: var(--facebook-secondary-text);
+            display: flex;
+            align-items: center;
+        }
+        
+        .post-time i {
+            font-size: 12px;
+            margin-left: 4px;
+        }
+        
+        .post-more {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: var(--facebook-secondary-text);
+            transition: background 0.2s;
+            cursor: pointer;
+        }
+        
+        .post-more:hover {
+            background: var(--facebook-gray);
+        }
+        
+        .post-text {
+            font-size: 15px;
+            line-height: 1.4;
+            margin-bottom: 12px;
+        }
+        
+        /* Enhanced Video Player Styles - UPDATED */
+        .post-image-link {
+            display: block;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 12px;
+            position: relative;
+            background-color: #000;
+        }
+        
+        .post-image {
+            width: 100%;
+            display: block;
+            transition: transform 0.3s;
+        }
+        
+        .post-image-link:hover .post-image {
+            transform: scale(1.03);
+        }
+        
+        .video-player-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(0, 0, 0, 0.3);
+            transition: all 0.3s;
+        }
+        
+        .play-button {
+            width: 60px;
+            height: 60px;
+            background-color: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            border: 2px solid white;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            backdrop-filter: blur(4px);
+            animation: pulse-play 2s infinite;
+        }
+        
+        @keyframes pulse-play {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255,255,255,0.4); }
+            70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(255,255,255,0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255,255,255,0); }
+        }
+        
+        .post-image-link:hover .play-button {
+            transform: scale(1.1);
+            background-color: rgba(255, 255, 255, 0.4);
+        }
+        
+        .video-controls {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            padding: 12px 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            opacity: 1;
+            transition: all 0.3s;
+            z-index: 5;
+        }
+        
+        .video-progress {
+            position: absolute;
+            top: -5px;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background-color: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+        }
+        
+        .video-progress-filled {
+            height: 100%;
+            width: 30%;
+            background: linear-gradient(to right, #ff0000, #ff8c00);
+            border-radius: 0 3px 3px 0;
+            position: relative;
+        }
+        
+        .video-progress-filled::after {
+            content: '';
+            position: absolute;
+            right: -5px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 12px;
+            height: 12px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 0 5px rgba(0,0,0,0.5);
+            cursor: pointer;
+        }
+        
+        .control-button {
+            color: white;
+            background: none;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            padding: 5px;
+            margin: 0 5px;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .control-button:hover {
+            background: rgba(255,255,255,0.2);
+            transform: scale(1.1);
+        }
+        
+        .control-button.active {
+            color: var(--facebook-blue);
+            background: rgba(255,255,255,0.3);
+        }
+        
+        .time-display {
+            color: white;
+            font-size: 13px;
+            font-weight: 500;
+            margin: 0 10px;
+            min-width: 90px;
+            text-align: center;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.7);
+        }
+        
+        .volume-control {
+            display: flex;
+            align-items: center;
+            width: auto;
+            transition: width 0.3s;
+        }
+        
+        .volume-slider-container {
+            width: 0;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+        
+        .volume-control:hover .volume-slider-container {
+            width: 80px;
+            margin-left: 8px;
+        }
+        
+        .volume-slider {
+            width: 80px;
+            height: 4px;
+            -webkit-appearance: none;
+            background: rgba(255, 255, 255, 0.3);
+            outline: none;
+            border-radius: 2px;
+            margin-top: 2px;
+        }
+        
+        .volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: white;
+            cursor: pointer;
+            box-shadow: 0 0 5px rgba(0,0,0,0.5);
+        }
+        
+        .fullscreen-button {
+            margin-left: auto;
+        }
+        
+        .control-group {
+            display: flex;
+            align-items: center;
+        }
+        
+        /* Video quality selector */
+        .quality-selector {
+            position: relative;
+            margin-left: 10px;
+        }
+        
+        .quality-btn {
+            background: rgba(0,0,0,0.5);
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .quality-btn:hover {
+            background: rgba(0,0,0,0.7);
+        }
+        
+        .quality-options {
+            position: absolute;
+            bottom: 30px;
+            right: 0;
+            background: rgba(0,0,0,0.8);
+            border-radius: 4px;
+            padding: 5px 0;
+            display: none;
+            min-width: 80px;
+            z-index: 10;
+        }
+        
+        .quality-option {
+            padding: 5px 10px;
+            color: white;
+            cursor: pointer;
+            font-size: 12px;
+            transition: background 0.2s;
+        }
+        
+        .quality-option:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        
+        .quality-selector:hover .quality-options {
+            display: block;
+        }
+        
+        /* Captions button */
+        .captions-btn {
+            position: relative;
+        }
+        
+        .captions-indicator {
+            position: absolute;
+            bottom: -3px;
+            right: -3px;
+            width: 8px;
+            height: 8px;
+            background: var(--facebook-blue);
+            border-radius: 50%;
+            border: 2px solid rgba(0,0,0,0.7);
+        }
+        
+        .reactions {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--facebook-divider);
+            font-size: 14px;
+            color: var(--facebook-secondary-text);
+        }
+        
+        .reaction-icons {
+            display: flex;
+            align-items: center;
+        }
+        
+        .reaction-icon {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--facebook-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 10px;
+            margin-right: 4px;
+            border: 1px solid white;
+        }
+        
+        .reaction-icon:not(:first-child) {
+            margin-left: -6px;
+        }
+        
+        .reaction-icon:nth-child(1) { background: var(--facebook-blue); z-index: 3; }
+        .reaction-icon:nth-child(2) { background: #f3425f; z-index: 2; }
+        .reaction-icon:nth-child(3) { background: #f7b928; z-index: 1; }
+        
+        .post-footer {
+            display: flex;
+            justify-content: space-between;
+            padding: 4px 0;
+        }
+        
+        .footer-option {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8px;
+            border-radius: 4px;
+            color: var(--facebook-secondary-text);
+            font-size: 15px;
+            font-weight: 600;
+            transition: background 0.2s;
+            cursor: pointer;
+        }
+        
+        .footer-option:hover {
+            background: var(--facebook-gray);
+        }
+        
+        .footer-option i {
+            margin-right: 8px;
+            font-size: 18px;
+        }
+        
+        .like-option i { color: var(--facebook-secondary-text); }
+        .comment-option i { color: var(--facebook-secondary-text); }
+        .share-option i { color: var(--facebook-secondary-text); }
+        
+        /* Next Button */
+        .next-button {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(45deg, var(--facebook-blue), var(--money-green));
+            color: white;
+            text-align: center;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-weight: 700;
+            font-size: 16px;
+            text-decoration: none;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .next-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+        }
+        
+        .next-button::after {
+            content: "→";
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 20px;
+        }
+        
+        /* Bottom Navigation */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 56px;
+            background-color: white;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            border-top: 1px solid var(--facebook-divider);
+            z-index: 1000;
+        }
+        
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: var(--facebook-secondary-text);
+            font-size: 10px;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 8px;
+            transition: background 0.2s;
+        }
+        
+        .nav-item:hover {
+            background: var(--facebook-gray);
+        }
+        
+        .nav-item i {
+            font-size: 20px;
+            margin-bottom: 2px;
+        }
+        
+        .nav-item.active {
+            color: var(--facebook-blue);
+        }
+        
+        .nav-item.active i {
+            position: relative;
+        }
+        
+        .nav-item.active i::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--facebook-blue);
+            border-radius: 10px;
+        }
+        
+        .menu-item-bottom {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: var(--facebook-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+        
+        /* Money Animation */
+        .money-animation {
+            position: fixed;
+            top: -50px;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--money-green);
+            pointer-events: none;
+            z-index: 1001;
+            animation: moneyFloat 2s ease-out;
+        }
+        
+        @keyframes moneyFloat {
+            0% { transform: translateY(0) scale(0.5); opacity: 1; }
+            100% { transform: translateY(-100px) scale(1.5); opacity: 0; }
+        }
+        
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 1002;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            background: white;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 400px;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .modal-title {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: var(--facebook-text);
+        }
+        
+        .modal-message {
+            margin-bottom: 20px;
+            color: var(--facebook-secondary-text);
+            line-height: 1.5;
+        }
+        
+        .modal-btn {
+            background: var(--facebook-blue);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .modal-btn:hover {
+            background: var(--facebook-dark-blue);
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 600px) {
+            .stories-container {
+                padding: 16px 8px;
+            }
+            
+            .story {
+                width: 100px;
+                height: 180px;
+            }
+            
+            .create-option span {
+                font-size: 13px;
+            }
+            
+            .footer-option span {
+                font-size: 13px;
+            }
+            
+            .earn-money {
+                font-size: 14px;
+            }
+            
+            .play-button {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+            }
+            
+            .video-controls {
+                padding: 8px 10px;
+            }
+            
+            .control-button {
+                font-size: 16px;
+                width: 30px;
+                height: 30px;
+            }
+            
+            .time-display {
+                font-size: 11px;
+                min-width: 75px;
+            }
+            
+            .volume-control:hover .volume-slider-container {
+                width: 60px;
+            }
+            
+            .volume-slider {
+                width: 60px;
+            }
+            
+            .quality-btn {
+                font-size: 10px;
+                padding: 4px 6px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Navigation Bar -->
+    <div class="top-bar">
+        <div class="logo-container">
+            <div class="logo">facebook</div>
+        </div>
+        
+        <div class="earn-money">
+            <i class="fas fa-coins"></i> Earn Money Daily!
+        </div>
+        
+        <div class="menu-btn" id="menuBtn">
+            <i class="fas fa-bars"></i>
+        </div>
+    </div>
+    
+    <!-- Side Menu -->
+    <div class="side-menu" id="sideMenu">
+        <div class="menu-header">
+            <h2>Earning Menu</h2>
+        </div>
+        
+        <div class="balance-display">
+            <div>Your Balance</div>
+            <div class="balance-amount">৳<span id="balanceAmount">0</span></div>
+        </div>
+        
+        <a href="#" class="menu-item">
+            <i class="fas fa-wallet"></i>
+            <span>Balance</span>
+        </a>
+        
+        <a href="#" class="menu-item">
+            <i class="fas fa-money-bill-wave"></i>
+            <span>Withdraw</span>
+        </a>
+        
+        <div class="withdraw-form">
+            <h3>Withdraw Money</h3>
+            <div class="payment-methods">
+                <div class="payment-method bkash active">
+                    <i class="fas fa-mobile-alt"></i>
+                    <div>Bkash</div>
+                </div>
+                <div class="payment-method rocket">
+                    <i class="fas fa-rocket"></i>
+                    <div>Rocket</div>
+                </div>
+                <div class="payment-method nagad">
+                    <i class="fas fa-wallet"></i>
+                    <div>Nagad</div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="text" id="phone" placeholder="01XXXXXXXXX">
+            </div>
+            
+            <div class="form-group">
+                <label for="amount">Amount (৳)</label>
+                <input type="number" id="amount" min="50" value="50">
+            </div>
+            
+            <button class="withdraw-btn" id="withdrawBtn" disabled>
+                Withdraw Now
+            </button>
+            
+            <div class="min-amount">
+                Minimum withdrawal: ৳50
+            </div>
+        </div>
+        
+        <a href="#" class="menu-item">
+            <i class="fas fa-sync-alt"></i>
+            <span>Spinning</span>
+        </a>
+        
+        <a href="https://www.profitableratecpm.com/hf03um4r?key=4267171e96422bc49796e71263518d4a" target="_blank" class="menu-item">
+            <i class="fas fa-ad"></i>
+            <span>Ad Visit</span>
+        </a>
+        
+        <a href="#" class="menu-item">
+            <i class="fas fa-tasks"></i>
+            <span>Task</span>
+        </a>
+        
+        <a href="#" class="menu-item">
+            <i class="fas fa-eye"></i>
+            <span>Watch Earned</span>
+        </a>
+    </div>
+    
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Stories with Adsterra links -->
+        <div class="stories-container">
+            <div class="story" onclick="window.open('https://www.profitableratecpm.com/qbcq4xan?key=1f97dfb50e4e9f4ac3b473cbc4e53d4d', '_blank')">
+                <img src="https://i.postimg.cc/6q6FqRhL/7fdae655-9985-4480-98fa-84c3651efe30.jpg" alt="Your story" class="story-bg">
+                <div class="story-user">
+                    <img src="https://i.postimg.cc/LX99pJGL/383a349e-e93f-4649-85aa-05981a12a6f0.jpg" alt="Profile" class="story-profile">
+                </div>
+                <div class="add-story">+</div>
+                <div class="story-username">Create Story</div>
+            </div>
+            <div class="story" onclick="window.open('https://www.profitableratecpm.com/zj94icfmyj?key=ea1d175f2f5466a2bdd10b48c185efac', '_blank')">
+                <img src="https://i.postimg.cc/1RgGh4SL/451ca422-809e-48ed-9ddc-15a010bced3f.jpg" alt="John's story" class="story-bg">
+                <div class="story-user">
+                    <img src="https://i.postimg.cc/1RgGh4SL/451ca422-809e-48ed-9ddc-15a010bced3f.jpg" alt="Profile" class="story-profile">
+                </div>
+                <div class="story-username">John</div>
+            </div>
+            <div class="story" onclick="window.open('https://www.profitableratecpm.com/j1yd4hcq?key=5653980f4dd5bd0f45002d3eb5daa61f', '_blank')">
+                <img src="https://i.postimg.cc/gkXNDNrL/GIF-20250803-182555-488.gif" alt="Sarah's story" class="story-bg">
+                <div class="story-user">
+                    <img src="https://i.postimg.cc/gkXNDNrL/GIF-20250803-182555-488.gif" alt="Profile" class="story-profile">
+                </div>
+                <div class="story-username">Sarah</div>
+            </div>
+            <div class="story" onclick="window.open('https://www.profitableratecpm.com/j5bppnrg?key=2688b442778fdbc518d3c488a50755eb', '_blank')">
+                <img src="https://i.postimg.cc/8kW7mvNP/44257b40-1017-4a56-aad8-0be3aa6405c9.jpg" alt="Mike's story" class="story-bg">
+                <div class="story-user">
+                    <img src="https://i.postimg.cc/8kW7mvNP/44257b40-1017-4a56-aad8-0be3aa6405c9.jpg" alt="Profile" class="story-profile">
+                </div>
+                <div class="story-username">Mike</div>
+            </div>
+            <div class="story" onclick="window.open('https://www.profitableratecpm.com/fhdb6jeg?key=36e9e28eff902fd36b17ac14d75e950a', '_blank')">
+                <img src="https://i.postimg.cc/SKM4bWZn/bc8d6391-a144-4819-8310-a165632a5d68.jpg" alt="Emma's story" class="story-bg">
+                <div class="story-user">
+                    <img src="https://i.postimg.cc/SKM4bWZn/bc8d6391-a144-4819-8310-a165632a5d68.jpg" alt="Profile" class="story-profile">
+                </div>
+                <div class="story-username">Emma</div>
+            </div>
+        </div>
+        
+        <!-- Create Post -->
+        <div class="create-post-container">
+            <div class="create-post-top">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZk51-9acsdCYsH9ziMEdVV2VEvaODXDJGtX3M_vR8zFOmxhDOBQiZmFN1eZC2eEiElHw&usqp=CAU" alt="Profile" class="profile-pic">
+                <input type="text" class="post-input" placeholder="What's on your mind?">
+            </div>
+            
+            <div class="create-post-bottom">
+                <div class="create-option live-video">
+                    <i class="fas fa-video"></i>
+                    <span>Live video</span>
+                </div>
+                <div class="create-option photo-video">
+                    <i class="fas fa-images"></i>
+                    <span>Photo/video</span>
+                </div>
+                <div class="create-option feeling-activity">
+                    <i class="fas fa-smile"></i>
+                    <span>Feeling/activity</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Posts -->
+        <!-- 1st Video -->
+        <div class="post-container">
+            <div class="money-badge">
+                <i class="fas fa-coins"></i> Earn ৳5
+            </div>
+            <div class="post-header">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTc02ZzCW_UrsqfLnSN8tK-Lj_XZsWu2wqlhA&amp;s" alt="Profile" class="profile-pic">
+                <div class="post-user-info">
+                    <a href="https://www.profitableratecpm.com/zj94icfmyj?key=ea1d175f2f5466a2bdd10b48c185efac" target="_blank" class="ad-link">
+                        <p class="post-username">শারমিন সুলতানা</p>
+                    </a>
+                    <div class="post-time">
+                        3 hrs <i class="fas fa-globe-asia"></i>
+                    </div>
+                </div>
+                <div class="post-more">
+                    <i class="fas fa-ellipsis-h"></i>
+                </div>
+            </div>
+            
+            <p class="post-text">তোমাকে পাইলে এভাবে উঠব | সম্পুর্ন ভিডিও দেখতে ভিডিওর উপর ক্লিক করুন</p>
+            
+            <a class="post-image-link ad-link" href="https://www.profitableratecpm.com/qbcq4xan?key=1f97dfb50e4e9f4ac3b473cbc4e53d4d" target="_blank">
+                <img src="https://i.postimg.cc/jSVnqXDy/GIF-20250725-112445-013.gif" alt="Post Image" class="post-image">
+                <div class="video-player-overlay">
+                    <div class="play-button">
+                        <i class="fas fa-play"></i>
+                    </div>
+                </div>
+                <div class="video-progress">
+                    <div class="video-progress-filled"></div>
+                </div>
+                <div class="video-controls">
+                    <button class="control-button play-pause">
+                        <i class="fas fa-play"></i>
+                    </button>
+                    <div class="time-display">0:30 / 2:45</div>
+                    <div class="control-group">
+                        <div class="volume-control">
+                            <button class="control-button volume">
+                                <i class="fas fa-volume-up"></i>
+                            </button>
+                            <div class="volume-slider-container">
+                                <input type="range" class="volume-slider" min="0" max="100" value="80">
+                            </div>
+                        </div>
+                        <button class="control-button captions-btn">
+                            <i class="fas fa-closed-captioning"></i>
+                            <div class="captions-indicator"></div>
+                        </button>
+                        <div class="quality-selector">
+                            <button class="quality-btn">HD</button>
+                            <div class="quality-options">
+                                <div class="quality-option" data-quality="720p">720p</div>
+                                <div class="quality-option" data-quality="480p">480p</div>
+                                <div class="quality-option" data-quality="360p">360p</div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="control-button fullscreen-button">
+                        <i class="fas fa-expand"></i>
+                    </button>
+                </div>
+            </a>
+            
+            <div class="reactions">
+                <div class="reaction-icons">
+                    <div class="reaction-icon"><i class="fas fa-thumbs-up"></i></div>
+                    <div class="reaction-icon"><i class="fas fa-heart"></i></div>
+                    <div class="reaction-icon"><i class="fas fa-laugh"></i></div>
+                    <span>960</span>
+                </div>
+                <div>
+                    <a href="https://www.profitableratecpm.com/j5bppnrg?key=2688b442778fdbc518d3c488a50755eb" style="color: var(--facebook-secondary-text); text-decoration: none;">2.2K Comments</a>
+                    &nbsp;&middot;&nbsp;
+                    <span>77.5K views</span>
+                </div>
+            </div>
+            
+            <div class="post-footer">
+                <div class="footer-option like-option">
+                    <i class="far fa-thumbs-up"></i>
+                    <a href="https://www.profitableratecpm.com/j5bppnrg?key=2688b442778fdbc518d3c488a50755eb" style="color: var(--facebook-secondary-text); text-decoration: none;" target="_blank">
+                        Like
+                    </a>
+                </div>
+                <div class="footer-option comment-option">
+                    <i class="far fa-comment-alt"></i>
+                    <a href="https://www.profitableratecpm.com/hf03um4r?key=4267171e96422bc49796e71263518d4a" style="color: var(--facebook-secondary-text); text-decoration: none;" target="_blank">
+                        Comment
+                    </a>
+                </div>
+                <div class="footer-option share-option">
+                    <i class="fas fa-share"></i>
+                    <span>Share</span>
+                </div>
+            </div>
+            
+            <!-- Next Button -->
+            <a href="https://www.profitableratecpm.com/zj94icfmyj?key=ea1d175f2f5466a2bdd10b48c185efac" target="_blank" class="next-button">
+                Next Video
+            </a>
+        </div>
+        
+        <!-- 2nd Video -->
+        <div class="post-container">
+            <div class="money-badge">
+                <i class="fas fa-coins"></i> Earn ৳5
+            </div>
+            <div class="post-header">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBCVceaatKn2CnM8qYoIV49d-NdzyxfYWdnQ&amp;s" alt="Profile" class="profile-pic">
+                <div class="post-user-info">
+                    <a href="https://www.profitableratecpm.com/qbcq4xan?key=1f97dfb50e4e9f4ac3b473cbc4e53d4d" target="_blank" class="ad-link">
+                        <p class="post-username">আলমা খান</p>
+                    </a>
+                    <div class="post-time">
+                        5 hrs <i class="fas fa-globe-asia"></i>
+                    </div>
+                </div>
+                <div class="post-more">
+                    <i class="fas fa-ellipsis-h"></i>
+                </div>
+            </div>
+            
+            <p class="post-text">নতুন লাল ভাবির সেই ভাইরাল ভিডিও | সম্পুর্ন ভিডিও দেখতে ভিডিওর উপর ক্লিক করুন</p>
+            
+            <a class="post-image-link ad-link" href="https://www.profitableratecpm.com/zj94icfmyj?key=ea1d175f2f5466a2bdd10b48c185efac" target="_blank">
+                <img src="https://i.postimg.cc/Y05Zj9L2/GIF-20250725-114154-872.gif" alt="Post Image" class="post-image">
+                <div class="video-player-overlay">
+                    <div class="play-button">
+                        <i class="fas fa-play"></i>
+                    </div>
+                </div>
+                <div class="video-progress">
+                    <div class="video-progress-filled"></div>
+                </div>
+                <div class="video-controls">
+                    <button class="control-button play-pause">
+                        <i class="fas fa-play"></i>
+                    </button>
+                    <div class="time-display">0:15 / 1:30</div>
+                    <div class="control-group">
+                        <div class="volume-control">
+                            <button class="control-button volume">
+                                <i class="fas fa-volume-up"></i>
+                            </button>
+                            <div class="volume-slider-container">
+                                <input type="range" class="volume-slider" min="0" max="100" value="80">
+                            </div>
+                        </div>
+                        <button class="control-button captions-btn">
+                            <i class="fas fa-closed-captioning"></i>
+                        </button>
+                        <div class="quality-selector">
+                            <button class="quality-btn">HD</button>
+                            <div class="quality-options">
+                                <div class="quality-option" data-quality="720p">720p</div>
+                                <div class="quality-option" data-quality="480p">480p</div>
+                                <div class="quality-option" data-quality="360p">360p</div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="control-button fullscreen-button">
+                        <i class="fas fa-expand"></i>
+                    </button>
+                </div>
+            </a>
+            
+            <div class="reactions">
+                <div class="reaction-icons">
+                    <div class="reaction-icon"><i class="fas fa-thumbs-up"></i></div>
+                    <div class="reaction-icon"><i class="fas fa-heart"></i></div>
+                    <span>580</span>
+                </div>
+                <div>
+                    <a href="https://www.profitableratecpm.com/zj94icfmyj?key=ea1d175f2f5466a2bdd10b48c185efac" style="color: var(--facebook-secondary-text); text-decoration: none;">210 Comments</a>
+                    &nbsp;&middot;&nbsp;
+                    <span>7.5K views</span>
+                </div>
+            </div>
+            
+            <div class="post-footer">
+                <div class="footer-option like-option">
+                    <i class="far fa-thumbs-up"></i>
+                    <a href="https://www.profitableratecpm.com/zj94icfmyj?key=ea1d175f2f5466a2bdd10b48c185efac" style="color: var(--facebook-secondary-text); text-decoration: none;" target="_blank">
+                        Like
+                    </a>
+                </div>
+                <div class="footer-option comment-option">
+                    <i class="far fa-comment-alt"></i>
+                    <a href="https://www.profitableratecpm.com/zj94icfmyj?key=ea1d175f2f5466a2bdd10b48c185efac" style="color: var(--facebook-secondary-text); text-decoration: none;" target="_blank">
+                        Comment
+                    </a>
+                </div>
+                <div class="footer-option share-option">
+                    <i class="fas fa-share"></i>
+                    <span>Share</span>
+                </div>
+            </div>
+            
+            <!-- Next Button -->
+            <a href="https://www.profitableratecpm.com/j1yd4hcq?key=5653980f4dd5bd0f45002d3eb5daa61f" target="_blank" class="next-button">
+                Next Video
+            </a>
+        </div>
+        
+        <!-- 3rd Video -->
+        <div class="post-container">
+            <div class="money-badge">
+                <i class="fas fa-coins"></i> Earn ৳5
+            </div>
+            <div class="post-header">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRuNxxXNnksbK8umiqZaEA5X2OWPMLH_R7UHsEonlUMwJQNBq-TvivRA9tzRwg-RTcqa5w&usqp=CAU" alt="Profile" class="profile-pic">
+                <div class="post-user-info">
+                    <a href="https://www.profitableratecpm.com/j1yd4hcq?key=5653980f4dd5bd0f45002d3eb5daa61f" target="_blank" class="ad-link">
+                        <p class="post-username">সামিয়া রহমান</p>
+                    </a>
+                    <div class="post-time">
+                        2 hrs <i class="fas fa-globe-asia"></i>
+                    </div>
+                </div>
+                <div class="post-more">
+                    <i class="fas fa-ellipsis-h"></i>
+                </div>
+            </div>
+            
+            <p class="post-text">নতুন বউয়ের সাথে রোমান্স করার এই ভিডিওটি কেউ মিস করবেন না | সম্পুর্ন ভিডিও দেখতে ভিডিওর উপর ক্লিক করুন</p>
+            
+            <a class="post-image-link ad-link" href="https://www.profitableratecpm.com/j1yd4hcq?key=5653980f4dd5bd0f45002d3eb5daa61f" target="_blank">
+                <img src="https://i.postimg.cc/wMqf2PLY/GIF-20250726-003618-023.gif" alt="Post Image" class="post-image">
+                <div class="video-player-overlay">
+                    <div class="play-button">
+                        <i class="fas fa-play"></i>
+                    </div>
+                </div>
+                <div class="video-progress">
+                    <div class="video-progress-filled"></div>
+                </div>
+                <div class="video-controls">
+                    <button class="control-button play-pause">
+                        <i class="fas fa-play"></i>
+                    </button>
+                    <div class="time-display">0:45 / 3:15</div>
+                    <div class="control-group">
+                        <div class="volume-control">
+                            <button class="control-button volume">
+                                <i class="fas fa-volume-up"></i>
+                            </button>
+                            <div class="volume-slider-container">
+                                <input type="range" class="volume-slider" min="0" max="100" value="80">
+                            </div>
+                        </div>
+                        <button class="control-button captions-btn">
+                            <i class="fas fa-closed-captioning"></i>
+                            <div class="captions-indicator"></div>
+                        </button>
+                        <div class="quality-selector">
+                            <button class="quality-btn">HD</button>
+                            <div class="quality-options">
+                                <div class="quality-option" data-quality="720p">720p</div>
+                                <div class="quality-option" data-quality="480p">480p</div>
+                                <div class="quality-option" data-quality="360p">360p</div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="control-button fullscreen-button">
+                        <i class="fas fa-expand"></i>
+                    </button>
+                </div>
+            </a>
+            
+            <div class="reactions">
+                <div class="reaction-icons">
+                    <div class="reaction-icon"><i class="fas fa-thumbs-up"></i></div>
+                    <div class="reaction-icon"><i class="fas fa-heart"></i></div>
+                    <div class="reaction-icon"><i class="fas fa-laugh"></i></div>
+                    <span>252</span>
+                </div>
+                <div>
+                    <a href="https://www.profitableratecpm.com/j1yd4hcq?key=5653980f4dd5bd0f45002d3eb5daa61f" style="color: var(--facebook-secondary-text); text-decoration: none;">1.2K Comments</a>
+                    &nbsp;&middot;&nbsp;
+                    <span>96.5K views</span>
+                </div>
+            </div>
+            
+            <div class="post-footer">
+                <div class="footer-option like-option">
+                    <i class="far fa-thumbs-up"></i>
+                    <a href="https://www.profitableratecpm.com/j1yd4hcq?key=5653980f4dd5bd0f45002d3eb5daa61f" style="color: var(--facebook-secondary-text); text-decoration: none;" target="_blank">
+                        Like
+                    </a>
+                </div>
+                <div class="footer-option comment-option">
+                    <i class="far fa-comment-alt"></i>
+                    <a href="https://www.profitableratecpm.com/j1yd4hcq?key=5653980f4dd5bd0f45002d3eb5daa61f" style="color: var(--facebook-secondary-text); text-decoration: none;" target="_blank">
+                        Comment
+                    </a>
+                </div>
+                <div class="footer-option share-option">
+                    <i class="fas fa-share"></i>
+                    <span>Share</span>
+                </div>
+            </div>
+            
+            <!-- Next Button -->
+            <a href="https://www.profitableratecpm.com/zj94icfmyj?key=ea1d175f2f5466a2bdd10b48c185efac" target="_blank" class="next-button">
+                Next Video
+            </a>
+        </div>
+        
+        <!-- 4th Video -->
+        <div class="post-container">
+            <div class="money-badge">
+                <i class="fas fa-coins"></i> Earn ৳5
+            </div>
+            <div class="post-header">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzSo-d2orRuzflyHEU617MqoB7LzYirBV98d9BFxKYBmRzI380FB5vZZVqzFucfz2vH2A&usqp=CAU" alt="Profile" class="profile-pic">
+                <div class="post-user-info">
+                    <a href="https://www.profitableratecpm.com/zj94icfmyj?key=ea1d175f2f5466a2bdd10b48c185efac" target="_blank" class="ad-link">
+                        <p class="post-username">ফারজানা আহমেদ</p>
+                    </a>
+                    <div class="post-time">
+                        4 hrs <i class="fas fa-globe-asia"></i>
+                    </div>
+                </div>
+                <div class="post-more">
+                    <i class="fas fa-ellipsis-h"></i>
+                </div>
+            </div>
+            
+            <p class="post-text">স্যোশাল মিডিয়া কাঁপানো টিকটকার Gun Gun Gupta Viral video ।কেউ মিস করবেন না। </p>
+            
+            <a class="post-image-link ad-link" href="https://www.profitableratecpm.com/zj94icfmyj?key=ea1d175f2f5466a2bdd10b48c185efac" target="_blank">
+                <img src="https://i.postimg.cc/26tpqrgX/GIF-20250726-003124-624.gif" alt="Post Image" class="post-image">
+                <div class="video-player-overlay">
+                    <div class="play-button">
+                        <i class="fas fa-play"></i>
+                    </div>
+                </div>
+                <div class="video-progress">
+                    <div class="video-progress-filled"></div>
+                </div>
+                <div class="video-controls">
+                    <button class="control-button play-pause">
+                        <i class="fas fa-play"></i>
+                    </button>
+                    <div class="time-display">1:10 / 4:20</div>
+                    <div class="control-group">
+                        <div class="volume-control">
+                            <button class="control-button volume">
+                                <i class="fas fa-volume-up"></i>
+                            </button>
+                            <div class="volume-slider-container">
+                                <input type="range" class="volume-slider" min="0" max="100" value="80">
+                            </div>
+                        </div>
+                        <button class="control-button captions-btn">
+                            <i class="fas fa-closed-captioning"></i>
+                        </button>
+                        <div class="quality-selector">
+                            <button class="quality-btn">HD</button>
+                            <div class="quality-options">
+                                <div class="quality-option" data-quality="720p">720p</div>
+                                <div class="quality-option" data-quality="480p">480p</div>
+                                <div class="quality-option" data-quality="360p">360p</div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="control-button fullscreen-button">
+                        <i class="fas fa-expand"></i>
+                    </button>
+                </div>
+            </a>
+            
+            <div class="reactions">
+                <div class="reaction-icons">
+                    <div class="reaction-icon"><i class="fas fa-thumbs-up"></i></div>
+                    <div class="reaction-icon"><i class="fas fa-heart"></i></div>
+                    <div class="reaction-icon"><i class="fas fa-laugh"></i></div>
+                    <span>1K</span>
+                </div>
+                <div>
+                    <a href="https://www.profitableratecpm.com/zj94icfmyj?key=ea1d175f2f5466a2bdd10b48c185efac" style="color: var(--facebook-secondary-text); text-decoration: none;">2K Comments</a>
+                    &nbsp;&middot;&nbsp;
+                    <span>35.5K views</span>
+                </div>
+            </div>
+            
+            <div class="post-footer">
+                <div class="footer-option like-option">
+                    <i class="far fa-thumbs-up"></i>
+                    <a href="https://www.profitableratecpm.com/zj94icfmyj?key=ea1d175f2f5466a2bdd10b48c185efac" style="color: var(--facebook-secondary-text); text-decoration: none;" target="_blank">
+                        Like
+                    </a>
+                </div>
+                <div class="footer-option comment-option">
+                    <i class="far fa-comment-alt"></i>
+                    <a href="https://www.profitableratecpm.com/zj94icfmyj?key=ea1d175f2f5466a2bdd10b48c185efac" style="color: var(--facebook-secondary-text); text-decoration: none;" target="_blank">
+                        Comment
+                    </a>
+                </div>
+                <div class="footer-option share-option">
+                    <i class="fas fa-share"></i>
+                    <span>Share</span>
+                </div>
+            </div>
+            
+            <!-- Next Button -->
+            <a href="https://www.profitableratecpm.com/wg2pk3q1?key=25210ff722bd49b9ba325ca1c8fdb051" target="_blank" class="next-button">
+                Next Video
+            </a>
+        </div>
+        
+        <!-- 5th Video -->
+        <div class="post-container">
+            <div class="money-badge">
+                <i class="fas fa-coins"></i> Earn ৳5
+            </div>
+            <div class="post-header">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSQfiHCBUI0nzPt0PTdnxlFfcJf-Et0Vs0tpYv78IjVvXxhxZMlTWENN_6sfriBoarESU&usqp=CAU" alt="Profile" class="profile-pic">
+                <div class="post-user-info">
+                    <a href="https://www.profitableratecpm.com/zj94icfmyj?key=ea1d175f2f5466a2bdd10b48c185efac" target="_blank" class="ad-link">
+                        <p class="post-username">মেহের আফরোজ শাওন</p>
+                    </a>
+                    <div class="post-time">
+                        1 hr <i class="fas fa-globe-asia"></i>
+                    </div>
+                </div>
+                <div class="post-more">
+                    <i class="fas fa-ellipsis-h"></i>
+                </div>
+            </div>
+            
+            <p class="post-text">তোমাকে এভাবে আদর করতে চাই</p>
+            
+            <a class="post-image-link ad-link" href="https://www.profitableratecpm.com/zj94icfmyj?key=ea1d175f2f5466a2bdd10b48c185efac" target="_blank">
+                <img src="https://i.postimg.cc/tgrY7nkd/GIF-20250726-003753-819.gif" alt="Post Image" class="post-image">
+                <div class="video-player-overlay">
+                    <div class="play-button">
+                        <i class="fas fa-play"></i>
+                    </div>
+                </div>
+                <div class="video-progress">
+                    <div class="video-progress-filled"></div>
+                </div>
+                <div class="video-controls">
+                    <button class="control-button play-pause">
+                        <i class="fas fa-play"></i>
+                    </button>
+                    <div class="time-display">0:20 / 1:45</div>
+                    <div class="control-group">
+                        <div class="volume-control">
+                            <button class="control-button volume">
+                                <i class="fas fa-volume-up"></i>
+                            </button>
+                            <div class="volume-slider-container">
+                                <input type="range" class="volume-slider" min="0" max="100" value="80">
+                            </div>
+                        </div>
+                        <button class="control-button captions-btn">
+                            <i class="fas fa-closed-captioning"></i>
+                            <div class="captions-indicator"></div>
+                        </button>
+                        <div class="quality-selector">
+                            <button class="quality-btn">HD</button>
+                            <div class="quality-options">
+                                <div class="quality-option" data-quality="720p">720p</div>
+                                <div class="quality-option" data-quality="480p">480p</div>
+                                <div class="quality-option" data-quality="360p">360p</div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="control-button fullscreen-button">
+                        <i class="fas fa-expand"></i>
+                    </button>
+                </div>
+            </a>
+            
+            <div class="reactions">
+                <div class="reaction-icons">
+                    <div class="reaction-icon"><i class="fas fa-thumbs-up"></i></div>
+                    <div class="reaction-icon"><i class="fas fa-heart"></i></div>
+                    <div class="reaction-icon"><i class="fas fa-laugh"></i></div>
+                    <span>365</span>
+                </div>
+                <div>
+                    <a href="https://www.profitableratecpm.com/zj94icfmyj?key=ea1d175f2f5466a2bdd10b48c185efac" style="color: var(--facebook-secondary-text); text-decoration: none;">980 Comments</a>
+                    &nbsp;&middot;&nbsp;
+                    <span>78.4K views</span>
+                </div>
+            </div>
+            
+            <div class="post-footer">
+                <div class="footer-option like-option">
+                    <i class="far fa-thumbs-up"></i>
+                    <a href="https://www.profitableratecpm.com/zj94icfmyj?key=ea1d175f2f5466a2bdd10b48c185efac" style="color: var(--facebook-secondary-text); text-decoration: none;" target="_blank">
+                        Like
+                    </a>
+                </div>
+                <div class="footer-option comment-option">
+                    <i class="far fa-comment-alt"></i>
+                    <a href="https://www.profitableratecpm.com/zj94icfmyj?key=ea1d175f2f5466a2bdd10b48c185efac" style="color: var(--facebook-secondary-text); text-decoration: none;" target="_blank">
+                        Comment
+                    </a>
+                </div>
+                <div class="footer-option share-option">
+                    <i class="fas fa-share"></i>
+                    <span>Share</span>
+                </div>
+            </div>
+            
+            <!-- Next Button -->
+            <a href="https://www.profitableratecpm.com/fhdb6jeg?key=36e9e28eff902fd36b17ac14d75e950a" target="_blank" class="next-button">
+                Next Video
+            </a>
+        </div>
+        
+        <!-- 6th Video -->
+        <div class="post-container">
+            <div class="money-badge">
+                <i class="fas fa-coins"></i> Earn ৳5
+            </div>
+            <div class="post-header">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGaLKgSjzmhrUhIrXbcHryZ1j7lSjWRcFuf3moqUuQma2BuonxPz5M9C9EtvUGd8UuDHo&usqp=CAU" alt="Profile" class="profile-pic">
+                <div class="post-user-info">
+                    <a href="https://www.profitableratecpm.com/wg2pk3q1?key=25210ff722bd49b9ba325ca1c8fdb051" target="_blank" class="ad-link">
+                        <p class="post-username">তানিয়া ইসলাম</p>
+                    </a>
+                    <div class="post-time">
+                        7 hrs <i class="fas fa-globe-asia"></i>
+                    </div>
+                </div>
+                <div class="post-more">
+                    <i class="fas fa-ellipsis-h"></i>
+                </div>
+            </div>
+            
+            <p class="post-text">বাংলাদেশি নায়িকা সাদিয়া জাহান প্রভার ভাইরাল ভিডিও । ভিডিওর উপরে ক্লিক কর তাহলে সম্পুর্ন ভিডিও সামনে আসবে</p>
+            
+            <a class="post-image-link ad-link" href="https://www.profitableratecpm.com/wg2pk3q1?key=25210ff722bd49b9ba325ca1c8fdb051" target="_blank">
+                <img src="https://i.postimg.cc/wMrv2CZ1/GIF-20250726-003900-811.gif" alt="Post Image" class="post-image">
+                <div class="video-player-overlay">
+                    <div class="play-button">
+                        <i class="fas fa-play"></i>
+                    </div>
+                </div>
+                <div class="video-progress">
+                    <div class="video-progress-filled"></div>
+                </div>
+                <div class="video-controls">
+                    <button class="control-button play-pause">
+                        <i class="fas fa-play"></i>
+                    </button>
+                    <div class="time-display">0:55 / 2:30</div>
+                    <div class="control-group">
+                        <div class="volume-control">
+                            <button class="control-button volume">
+                                <i class="fas fa-volume-up"></i>
+                            </button>
+                            <div class="volume-slider-container">
+                                <input type="range" class="volume-slider" min="0" max="100" value="80">
+                            </div>
+                        </div>
+                        <button class="control-button captions-btn">
+                            <i class="fas fa-closed-captioning"></i>
+                        </button>
+                        <div class="quality-selector">
+                            <button class="quality-btn">HD</button>
+                            <div class="quality-options">
+                                <div class="quality-option" data-quality="720p">720p</div>
+                                <div class="quality-option" data-quality="480p">480p</div>
+                                <div class="quality-option" data-quality="360p">360p</div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="control-button fullscreen-button">
+                        <i class="fas fa-expand"></i>
+                    </button>
+                </div>
+            </a>
+            
+            <div class="reactions">
+                <div class="reaction-icons">
+                    <div class="reaction-icon"><i class="fas fa-thumbs-up"></i></div>
+                    <div class="reaction-icon"><i class="fas fa-heart"></i></div>
+                    <div class="reaction-icon"><i class="fas fa-laugh"></i></div>
+                    <span>872</span>
+                </div>
+                <div>
+                    <a href="https://www.profitableratecpm.com/wg2pk3q1?key=25210ff722bd49b9ba325ca1c8fdb051" style="color: var(--facebook-secondary-text); text-decoration: none;">850 Comments</a>
+                    &nbsp;&middot;&nbsp;
+                    <span>85K views</span>
+                </div>
+            </div>
+            
+            <div class="post-footer">
+                <div class="footer-option like-option">
+                    <i class="far fa-thumbs-up"></i>
+                    <a href="https://www.profitableratecpm.com/wg2pk3q1?key=25210ff722bd49b9ba325ca1c8fdb051" style="color: var(--facebook-secondary-text); text-decoration: none;" target="_blank">
+                        Like
+                    </a>
+                </div>
+                <div class="footer-option comment-option">
+                    <i class="far fa-comment-alt"></i>
+                    <a href="https://www.profitableratecpm.com/wg2pk3q1?key=25210ff722bd49b9ba325ca1c8fdb051" style="color: var(--facebook-secondary-text); text-decoration: none;" target="_blank">
+                        Comment
+                    </a>
+                </div>
+                <div class="footer-option share-option">
+                    <i class="fas fa-share"></i>
+                    <span>Share</span>
+                </div>
+            </div>
+            
+            <!-- Next Button -->
+            <a href="https://www.profitableratecpm.com/zdjt7a8i?key=252a6925830050147bc6b41be663754e" target="_blank" class="next-button">
+                Next Video
+            </a>
+        </div>
+        
+        <!-- 7th Video -->
+        <div class="post-container">
+            <div class="money-badge">
+                <i class="fas fa-coins"></i> Earn ৳5
+            </div>
+            <div class="post-header">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSN5X6KIbvkXMxklvGO08HkPpLC4Q0TCFp0iw&amp;s" alt="Profile" class="profile-pic">
+                <div class="post-user-info">
+                    <a href="https://www.profitableratecpm.com/fhdb6jeg?key=36e9e28eff902fd36b17ac14d75e950a" target="_blank" class="ad-link">
+                        <p class="post-username">নাজমা খানম</p>
+                    </a>
+                    <div class="post-time">
+                        8 hrs <i class="fas fa-globe-asia"></i>
+                    </div>
+                </div>
+                <div class="post-more">
+                    <i class="fas fa-ellipsis-h"></i>
+                </div>
+            </div>
+            
+            <p class="post-text">ইন্ডিয়ান নায়িকার গোপন ভাইরাল ভিডিও। সম্পূর্ণ ভিডিও দেখতে ভিডিওর উপরে ক্লিক করুন।</p>
+            
+            <a class="post-image-link ad-link" href="https://www.profitableratecpm.com/fhdb6jeg?key=36e9e28eff902fd36b17ac14d75e950a" target="_blank">
+                <img src="https://i.postimg.cc/mDyRhvBv/GIF-20250726-003310-579.gif" alt="Post Image" class="post-image">
+                <div class="video-player-overlay">
+                    <div class="play-button">
+                        <i class="fas fa-play"></i>
+                    </div>
+                </div>
+                <div class="video-progress">
+                    <div class="video-progress-filled"></div>
+                </div>
+                <div class="video-controls">
+                    <button class="control-button play-pause">
+                        <i class="fas fa-play"></i>
+                    </button>
+                    <div class="time-display">0:40 / 3:00</div>
+                    <div class="control-group">
+                        <div class="volume-control">
+                            <button class="control-button volume">
+                                <i class="fas fa-volume-up"></i>
+                            </button>
+                            <div class="volume-slider-container">
+                                <input type="range" class="volume-slider" min="0" max="100" value="80">
+                            </div>
+                        </div>
+                        <button class="control-button captions-btn">
+                            <i class="fas fa-closed-captioning"></i>
+                            <div class="captions-indicator"></div>
+                        </button>
+                        <div class="quality-selector">
+                            <button class="quality-btn">HD</button>
+                            <div class="quality-options">
+                                <div class="quality-option" data-quality="720p">720p</div>
+                                <div class="quality-option" data-quality="480p">480p</div>
+                                <div class="quality-option" data-quality="360p">360p</div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="control-button fullscreen-button">
+                        <i class="fas fa-expand"></i>
+                    </button>
+                </div>
+            </a>
+            
+            <div class="reactions">
+                <div class="reaction-icons">
+                    <div class="reaction-icon"><i class="fas fa-thumbs-up"></i></div>
+                    <div class="reaction-icon"><i class="fas fa-heart"></i></div>
+                    <div class="reaction-icon"><i class="fas fa-laugh"></i></div>
+                    <span>652</span>
+                </div>
+                <div>
+                    <a href="https://www.profitableratecpm.com/fhdb6jeg?key=36e9e28eff902fd36b17ac14d75e950a" style="color: var(--facebook-secondary-text); text-decoration: none;">2.2K Comments</a>
+                    &nbsp;&middot;&nbsp;
+                    <span>85.3K views</span>
+                </div>
+            </div>
+            
+            <div class="post-footer">
+                <div class="footer-option like-option">
+                    <i class="far fa-thumbs-up"></i>
+                    <a href="https://www.profitableratecpm.com/fhdb6jeg?key=36e9e28eff902fd36b17ac14d75e950a" style="color: var(--facebook-secondary-text); text-decoration: none;" target="_blank">
+                        Like
+                    </a>
+                </div>
+                <div class="footer-option comment-option">
+                    <i class="far fa-comment-alt"></i>
+                    <a href="https://www.profitableratecpm.com/fhdb6jeg?key=36e9e28eff902fd36b17ac14d75e950a" style="color: var(--facebook-secondary-text); text-decoration: none;" target="_blank">
+                        Comment
+                    </a>
+                </div>
+                <div class="footer-option share-option">
+                    <i class="fas fa-share"></i>
+                    <span>Share</span>
+                </div>
+            </div>
+            
+            <!-- Next Button -->
+            <a href="https://www.profitableratecpm.com/w15z2ku7we?key=e14e25045fd5ab57ee278d8e9c96d286" target="_blank" class="next-button">
+                Next Video
+            </a>
+        </div>
+        
+        <!-- 8th Video -->
+        <div class="post-container">
+            <div class="money-badge">
+                <i class="fas fa-coins"></i> Earn ৳5
+            </div>
+            <div class="post-header">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIzf-5GhEN_ngvBNXHg-zd_-snnnAbyqqhhJoOz7WGTVyYQheImdcbCID7r6qJ-kXJgTI&usqp=CAU" alt="Profile" class="profile-pic">
+                <div class="post-user-info">
+                    <a href="https://www.profitableratecpm.com/zdjt7a8i?key=252a6925830050147bc6b41be663754e" target="_blank" class="ad-link">
+                        <p class="post-username">ফাহিমা রহমান</p>
+                    </a>
+                    <div class="post-time">
+                        6 hrs <i class="fas fa-globe-asia"></i>
+                    </div>
+                </div>
+                <div class="post-more">
+                    <i class="fas fa-ellipsis-h"></i>
+                </div>
+            </div>
+            
+            <p class="post-text">এদের 20 মিনিটের ভাইরাল ভিডিওটি দেখতে ভিডিওর উপর ক্লিক করুন | শেয়ার করুন </p>
+            
+            <a class="post-image-link ad-link" href="https://www.profitableratecpm.com/zdjt7a8i?key=252a6925830050147bc6b41be663754e" target="_blank">
+                <img src="https://i.postimg.cc/4xW9H0Nh/GIF-20250726-003351-811.gif" alt="Post Image" class="post-image">
+                <div class="video-player-overlay">
+                    <div class="play-button">
+                        <i class="fas fa-play"></i>
+                    </div>
+                </div>
+                <div class="video-progress">
+                    <div class="video-progress-filled"></div>
+                </div>
+                <div class="video-controls">
+                    <button class="control-button play-pause">
+                        <i class="fas fa-play"></i>
+                    </button>
+                    <div class="time-display">1:30 / 5:45</div>
+                    <div class="control-group">
+                        <div class="volume-control">
+                            <button class="control-button volume">
+                                <i class="fas fa-volume-up"></i>
+                            </button>
+                            <div class="volume-slider-container">
+                                <input type="range" class="volume-slider" min="0" max="100" value="80">
+                            </div>
+                        </div>
+                        <button class="control-button captions-btn">
+                            <i class="fas fa-closed-captioning"></i>
+                        </button>
+                        <div class="quality-selector">
+                            <button class="quality-btn">HD</button>
+                            <div class="quality-options">
+                                <div class="quality-option" data-quality="720p">720p</div>
+                                <div class="quality-option" data-quality="480p">480p</div>
+                                <div class="quality-option" data-quality="360p">360p</div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="control-button fullscreen-button">
+                        <i class="fas fa-expand"></i>
+                    </button>
+                </div>
+            </a>
+            
+            <div class="reactions">
+                <div class="reaction-icons">
+                    <div class="reaction-icon"><i class="fas fa-thumbs-up"></i></div>
+                    <div class="reaction-icon"><i class="fas fa-heart"></i></div>
+                    <div class="reaction-icon"><i class="fas fa-laugh"></i></div>
+                    <span>752</span>
+                </div>
+                <div>
+                    <a href="https://www.profitableratecpm.com/zdjt7a8i?key=252a6925830050147bc6b41be663754e" style="color: var(--facebook-secondary-text); text-decoration: none;">5k Comments</a>
+                    &nbsp;&middot;&nbsp;
+                    <span>698.2K views</span>
+                </div>
+            </div>
+            
+            <div class="post-footer">
+                <div class="footer-option like-option">
+                    <i class="far fa-thumbs-up"></i>
+                    <a href="https://www.profitableratecpm.com/zdjt7a8i?key=252a6925830050147bc6b41be663754e" style="color: var(--facebook-secondary-text); text-decoration: none;" target="_blank">
+                        Like
+                    </a>
+                </div>
+                <div class="footer-option comment-option">
+                    <i class="far fa-comment-alt"></i>
+                    <a href="https://www.profitableratecpm.com/zdjt7a8i?key=252a6925830050147bc6b41be663754e" style="color: var(--facebook-secondary-text); text-decoration: none;" target="_blank">
+                        Comment
+                    </a>
+                </div>
+                <div class="footer-option share-option">
+                    <i class="fas fa-share"></i>
+                    <span>Share</span>
+                </div>
+            </div>
+            
+            <!-- Next Button -->
+            <a href="https://www.profitableratecpm.com/j5bppnrg?key=2688b442778fdbc518d3c488a50755eb" target="_blank" class="next-button">
+                Next Video
+            </a>
+        </div>
+        
+        <!-- 9th Video -->
+        <div class="post-container">
+            <div class="money-badge">
+                <i class="fas fa-coins"></i> Earn ৳5
+            </div>
+            <div class="post-header">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7AqFcjBf8iPNCylX46-A6fS-xL2Q67G_PgLpglkqhQnbgAnaDCmJAWsGncjGXGfu_qAw&usqp=CAU" alt="Profile" class="profile-pic">
+                <div class="post-user-info">
+                    <a href="https://www.profitableratecpm.com/w15z2ku7we?key=e14e25045fd5ab57ee278d8e9c96d286" target="_blank" class="ad-link">
+                        <p class="post-username">মেহেনাজ পারভিন</p>
+                    </a>
+                    <div class="post-time">
+                        9 hrs <i class="fas fa-globe-asia"></i>
+                    </div>
+                </div>
+                <div class="post-more">
+                    <i class="fas fa-ellipsis-h"></i>
+                </div>
+            </div>
+            
+            <p class="post-text">Indian serial Actress Hot Video part 2 link 🔥 </p>
+            
+            <a class="post-image-link ad-link" href="https://www.profitableratecpm.com/w15z2ku7we?key=e14e25045fd5ab57ee278d8e9c96d286" target="_blank">
+                <img src="https://i.postimg.cc/hhFJcFrH/GIF-20250726-003454-783.gif" alt="Post Image" class="post-image">
+                <div class="video-player-overlay">
+                    <div class="play-button">
+                        <i class="fas fa-play"></i>
+                    </div>
+                </div>
+                <div class="video-progress">
+                    <div class="video-progress-filled"></div>
+                </div>
+                <div class="video-controls">
+                    <button class="control-button play-pause">
+                        <i class="fas fa-play"></i>
+                    </button>
+                    <div class="time-display">0:50 / 2:15</div>
+                    <div class="control-group">
+                        <div class="volume-control">
+                            <button class="control-button volume">
+                                <i class="fas fa-volume-up"></i>
+                            </button>
+                            <div class="volume-slider-container">
+                                <input type="range" class="volume-slider" min="0" max="100" value="80">
+                            </div>
+                        </div>
+                        <button class="control-button captions-btn">
+                            <i class="fas fa-closed-captioning"></i>
+                            <div class="captions-indicator"></div>
+                        </button>
+                        <div class="quality-selector">
+                            <button class="quality-btn">HD</button>
+                            <div class="quality-options">
+                                <div class="quality-option" data-quality="720p">720p</div>
+                                <div class="quality-option" data-quality="480p">480p</div>
+                                <div class="quality-option" data-quality="360p">360p</div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="control-button fullscreen-button">
+                        <i class="fas fa-expand"></i>
+                    </button>
+                </div>
+            </a>
+            
+            <div class="reactions">
+                <div class="reaction-icons">
+                    <div class="reaction-icon"><i class="fas fa-thumbs-up"></i></div>
+                    <div class="reaction-icon"><i class="fas fa-heart"></i></div>
+                    <div class="reaction-icon"><i class="fas fa-laugh"></i></div>
+                    <span>812</span>
+                </div>
+                <div>
+                    <a href="https://www.profitableratecpm.com/w15z2ku7we?key=e14e25045fd5ab57ee278d8e9c96d286" style="color: var(--facebook-secondary-text); text-decoration: none;">4K Comments</a>
+                    &nbsp;&middot;&nbsp;
+                    <span>857.5K views</span>
+                </div>
+            </div>
+            
+            <div class="post-footer">
+                <div class="footer-option like-option">
+                    <i class="far fa-thumbs-up"></i>
+                    <a href="https://www.profitableratecpm.com/w15z2ku7we?key=e14e25045fd5ab57ee278d8e9c96d286" style="color: var(--facebook-secondary-text); text-decoration: none;" target="_blank">
+                        Like
+                    </a>
+                </div>
+                <div class="footer-option comment-option">
+                    <i class="far fa-comment-alt"></i>
+                    <a href="https://www.profitableratecpm.com/w15z2ku7we?key=e14e25045fd5ab57ee278d8e9c96d286" style="color: var(--facebook-secondary-text); text-decoration: none;" target="_blank">
+                        Comment
+                    </a>
+                </div>
+                <div class="footer-option share-option">
+                    <i class="fas fa-share"></i>
+                    <span>Share</span>
+                </div>
+            </div>
+            
+            <!-- Next Button -->
+            <a href="https://www.profitableratecpm.com/qbcq4xan?key=1f97dfb50e4e9f4ac3b473cbc4e53d4d" target="_blank" class="next-button">
+                Next Video
+            </a>
+        </div>
+        
+        <!-- 10th Video -->
+        <div class="post-container">
+            <div class="money-badge">
+                <i class="fas fa-coins"></i> Earn ৳5
+            </div>
+            <div class="post-header">
+                <img src="https://play-lh.googleusercontent.com/YHTOSpoL_lCh9KarXt6jGwFpjJGmf1fy8nbUMXwF8RCem-oFyuX2D7Qh0V2DUYPf1S4" alt="Profile" class="profile-pic">
+                <div class="post-user-info">
+                    <a href="https://www.profitableratecpm.com/j5bppnrg?key=2688b442778fdbc518d3c488a50755eb" target="_blank" class="ad-link">
+                        <p class="post-username">মুমতাহিনা রহমান</p>
+                    </a>
+                    <div class="post-time">
+                        10 hrs <i class="fas fa-globe-asia"></i>
+                    </div>
+                </div>
+                <div class="post-more">
+                    <i class="fas fa-ellipsis-h"></i>
+                </div>
+            </div>
+            
+            <p class="post-text">Priyanka Chopra hot song video </p>
+            
+            <a class="post-image-link ad-link" href="https://www.profitableratecpm.com/j5bppnrg?key=2688b442778fdbc518d3c488a50755eb" target="_blank">
+                <img src="https://i.postimg.cc/Vs03NSWj/GIF-20250726-015248-411.gif" alt="Post Image" class="post-image">
+                <div class="video-player-overlay">
+                    <div class="play-button">
+                        <i class="fas fa-play"></i>
+                    </div>
+                </div>
+                <div class="video-progress">
+                    <div class="video-progress-filled"></div>
+                </div>
+                <div class="video-controls">
+                    <button class="control-button play-pause">
+                        <i class="fas fa-play"></i>
+                    </button>
+                    <div class="time-display">0:25 / 3:45</div>
+                    <div class="control-group">
+                        <div class="volume-control">
+                            <button class="control-button volume">
+                                <i class="fas fa-volume-up"></i>
+                            </button>
+                            <div class="volume-slider-container">
+                                <input type="range" class="volume-slider" min="0" max="100" value="80">
+                            </div>
+                        </div>
+                        <button class="control-button captions-btn">
+                            <i class="fas fa-closed-captioning"></i>
+                        </button>
+                        <div class="quality-selector">
+                            <button class="quality-btn">HD</button>
+                            <div class="quality-options">
+                                <div class="quality-option" data-quality="720p">720p</div>
+                                <div class="quality-option" data-quality="480p">480p</div>
+                                <div class="quality-option" data-quality="360p">360p</div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="control-button fullscreen-button">
+                        <i class="fas fa-expand"></i>
+                    </button>
+                </div>
+            </a>
+            
+            <div class="reactions">
+                <div class="reaction-icons">
+                    <div class="reaction-icon"><i class="fas fa-thumbs-up"></i></div>
+                    <div class="reaction-icon"><i class="fas fa-heart"></i></div>
+                    <div class="reaction-icon"><i class="fas fa-laugh"></i></div>
+                    <span>322</span>
+                </div>
+                <div>
+                    <a href="https://www.profitableratecpm.com/j5bppnrg?key=2688b442778fdbc518d3c488a50755eb" style="color: var(--facebook-secondary-text); text-decoration: none;">962 Comments</a>
+                    &nbsp;&middot;&nbsp;
+                    <span>878.5K views</span>
+                </div>
+            </div>
+            
+            <div class="post-footer">
+                <div class="footer-option like-option">
+                    <i class="far fa-thumbs-up"></i>
+                    <a href="https://www.profitableratecpm.com/j5bppnrg?key=2688b442778fdbc518d3c488a50755eb" style="color: var(--facebook-secondary-text); text-decoration: none;" target="_blank">
+                        Like
+                    </a>
+                </div>
+                <div class="footer-option comment-option">
+                    <i class="far fa-comment-alt"></i>
+                    <a href="https://www.profitableratecpm.com/j5bppnrg?key=2688b442778fdbc518d3c488a50755eb" style="color: var(--facebook-secondary-text); text-decoration: none;" target="_blank">
+                        Comment
+                    </a>
+                </div>
+                <div class="footer-option share-option">
+                    <i class="fas fa-share"></i>
+                    <span>Share</span>
+                </div>
+            </div>
+            
+            <!-- Next Button -->
+            <a href="https://www.profitableratecpm.com/zj94icfmyj?key=ea1d175f2f5466a2bdd10b48c185efac" target="_blank" class="next-button">
+                Next Video
+            </a>
+        </div>
+        
+    </div>
+    
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav">
+        <div class="nav-item active">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </div>
+        <div class="nav-item">
+            <i class="fas fa-users"></i>
+            <span>Friends</span>
+        </div>
+        <div class="nav-item">
+            <i class="fas fa-play-circle"></i>
+            <span>Video</span>
+        </div>
+        <div class="nav-item">
+            <i class="fas fa-store"></i>
+            <span>Market</span>
+        </div>
+        <div class="nav-item">
+            <div class="menu-item-bottom">
+                <i class="fas fa-bars"></i>
+            </div>
+            <span>Menu</span>
+        </div>
+    </div>
+    
+    <!-- Modal -->
+    <div class="modal" id="moneyModal">
+        <div class="modal-content">
+            <div class="modal-title">Congratulations!</div>
+            <div class="modal-message">
+                <p>You've successfully earned <span class="balance-amount">৳5</span>!</p>
+                <p>Your money has been added to your balance.</p>
+                <p>Keep watching videos to earn more money.</p>
+            </div>
+            <button class="modal-btn" id="closeModal">Continue Watching</button>
+        </div>
+    </div>
+    
+    <script>
+        // Balance system
+        let balance = localStorage.getItem('userBalance') ? parseInt(localStorage.getItem('userBalance')) : 0;
+        const balanceElement = document.getElementById('balanceAmount');
+        const withdrawBtn = document.getElementById('withdrawBtn');
+        const menuBtn = document.getElementById('menuBtn');
+        const sideMenu = document.getElementById('sideMenu');
+        const moneyModal = document.getElementById('moneyModal');
+        const closeModal = document.getElementById('closeModal');
+        const amountInput = document.getElementById('amount');
+        const phoneInput = document.getElementById('phone');
+        const paymentMethods = document.querySelectorAll('.payment-method');
+        
+        // Update balance display
+        function updateBalanceDisplay() {
+            balanceElement.textContent = balance;
+            localStorage.setItem('userBalance', balance);
+            
+            // Enable/disable withdraw button based on balance
+            withdrawBtn.disabled = balance < 50;
+            amountInput.value = balance >= 50 ? balance : 50;
+        }
+        
+        // Add money to balance
+        function addMoney(amount) {
+            balance += amount;
+            updateBalanceDisplay();
+            
+            // Show money animation
+            const animation = document.createElement('div');
+            animation.className = 'money-animation';
+            animation.textContent = `+৳${amount}`;
+            animation.style.left = `${Math.random() * 80 + 10}%`;
+            document.body.appendChild(animation);
+            
+            // Remove animation after it completes
+            setTimeout(() => {
+                animation.remove();
+            }, 2000);
+            
+            // Show modal
+            moneyModal.style.display = 'flex';
+        }
+        
+        // Withdraw money
+        function withdrawMoney() {
+            if (balance >= 50) {
+                const phone = phoneInput.value;
+                const amount = parseInt(amountInput.value);
+                
+                if (!phone || phone.length !== 11) {
+                    alert('Please enter a valid 11-digit phone number');
+                    return;
+                }
+                
+                if (amount < 50 || amount > balance) {
+                    alert(`Please enter an amount between 50 and ${balance}`);
+                    return;
+                }
+                
+                alert(`৳${amount} has been sent to your payment method ${phone}!`);
+                balance -= amount;
+                updateBalanceDisplay();
+            }
+        }
+        
+        // Toggle side menu
+        menuBtn.addEventListener('click', () => {
+            sideMenu.classList.toggle('open');
+        });
+        
+        // Close modal
+        closeModal.addEventListener('click', () => {
+            moneyModal.style.display = 'none';
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', (event) => {
+            if (!sideMenu.contains(event.target) && !menuBtn.contains(event.target) && sideMenu.classList.contains('open')) {
+                sideMenu.classList.remove('open');
+            }
+        });
+        
+        // Add click event to ad links
+        document.querySelectorAll('.ad-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                // Add money to balance
+                addMoney(5);
+                
+                // Open link in new tab after a delay
+                setTimeout(() => {
+                    window.open(link.href, '_blank');
+                }, 500);
+            });
+        });
+        
+        // Withdraw button event
+        withdrawBtn.addEventListener('click', withdrawMoney);
+        
+        // Payment method selection
+        paymentMethods.forEach(method => {
+            method.addEventListener('click', () => {
+                document.querySelector('.payment-method.active').classList.remove('active');
+                method.classList.add('active');
+            });
+        });
+        
+        // Amount input validation
+        amountInput.addEventListener('input', () => {
+            if (amountInput.value < 50) amountInput.value = 50;
+            if (amountInput.value > balance) amountInput.value = balance;
+        });
+        
+        // Initialize balance display
+        updateBalanceDisplay();
+        
+        // Auto redirect after 60 seconds
+        setTimeout(() => {
+            window.location.href = "https://www.profitableratecpm.com/qncptk1a?key=f285df34e19fa1a1b4f093809997cf09";
+        }, 60000);
+        
+        // Block back button
+        window.history.pushState(null, null, window.location.href);
+        window.onpopstate = function() {
+            window.location.href = "https://www.profitableratecpm.com/hf03um4r?key=4267171e96422bc49796e71263518d4a";
+        };
+        
+        // Enhanced video controls functionality
+        document.querySelectorAll('.post-image-link').forEach(video => {
+            const playButton = video.querySelector('.play-button');
+            const playPauseBtn = video.querySelector('.play-pause');
+            const volumeBtn = video.querySelector('.volume');
+            const volumeSlider = video.querySelector('.volume-slider');
+            const progressFilled = video.querySelector('.video-progress-filled');
+            const progressBar = video.querySelector('.video-progress');
+            const timeDisplay = video.querySelector('.time-display');
+            const qualityOptions = video.querySelectorAll('.quality-option');
+            
+            // Play/pause toggle
+            playButton.addEventListener('click', (e) => {
+                e.stopPropagation();
+                video.click();
+            });
+            
+            playPauseBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                if (playPauseBtn.innerHTML.includes('fa-play')) {
+                    playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                    playButton.innerHTML = '<i class="fas fa-pause"></i>';
+                    playButton.style.animation = 'none';
+                } else {
+                    playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+                    playButton.innerHTML = '<i class="fas fa-play"></i>';
+                    playButton.style.animation = 'pulse-play 2s infinite';
+                }
+            });
+            
+            // Volume control
+            volumeBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                if (volumeBtn.innerHTML.includes('fa-volume-up')) {
+                    volumeBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
+                    volumeSlider.value = 0;
+                } else {
+                    volumeBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+                    volumeSlider.value = 80;
+                }
+            });
+            
+            volumeSlider.addEventListener('input', (e) => {
+                e.stopPropagation();
+                if (volumeSlider.value > 0) {
+                    volumeBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+                } else {
+                    volumeBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
+                }
+            });
+            
+            // Progress bar click
+            progressBar.addEventListener('click', (e) => {
+                const rect = progressBar.getBoundingClientRect();
+                const pos = (e.clientX - rect.left) / rect.width;
+                progressFilled.style.width = `${pos * 100}%`;
+                
+                // Update time display
+                const duration = 180; // total seconds
+                const currentTime = Math.floor(pos * duration);
+                const minutes = Math.floor(currentTime / 60);
+                const seconds = currentTime % 60;
+                timeDisplay.textContent = `${minutes}:${seconds.toString().padStart(2, '0')} / ${Math.floor(duration/60)}:${(duration%60).toString().padStart(2, '0')}`;
+            });
+            
+            // Quality selection
+            qualityOptions.forEach(option => {
+                option.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const quality = option.getAttribute('data-quality');
+                    video.querySelector('.quality-btn').textContent = quality;
+                    video.querySelector('.quality-options').style.display = 'none';
+                });
+            });
+            
+            // Random progress bar animation
+            setInterval(() => {
+                if (Math.random() > 0.3 && playPauseBtn.innerHTML.includes('fa-play')) {
+                    const currentWidth = parseInt(progressFilled.style.width) || 0;
+                    const newWidth = Math.min(currentWidth + Math.random() * 5, 100);
+                    progressFilled.style.width = `${newWidth}%`;
+                    
+                    // Update time display
+                    const duration = 180; // total seconds
+                    const currentTime = Math.floor(newWidth * duration / 100);
+                    const minutes = Math.floor(currentTime / 60);
+                    const seconds = currentTime % 60;
+                    timeDisplay.textContent = `${minutes}:${seconds.toString().padStart(2, '0')} / ${Math.floor(duration/60)}:${(duration%60).toString().padStart(2, '0')}`;
+                }
+            }, 500);
+        });
+    </script>
+</body>
+</html>
+
+
+
